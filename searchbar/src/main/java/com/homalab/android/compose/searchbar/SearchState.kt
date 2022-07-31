@@ -21,8 +21,8 @@ class SearchState<T>(
         get() = when {
             !focused && query.text.isEmpty() -> SearchDisplayType.InitialResults
             focused && query.text.isEmpty() -> SearchDisplayType.Suggestions
-            searchResults?.isEmpty() == true -> SearchDisplayType.NoResults
             searching -> SearchDisplayType.Searching
+            searchResults?.isEmpty() == true -> SearchDisplayType.NoResults
             searchResults == null -> SearchDisplayType.Error
             else -> SearchDisplayType.Results
         }
