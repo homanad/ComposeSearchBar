@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import com.homalab.android.compose.sample.searchfield.components.LottieCircularLoading
 import com.homalab.android.compose.sample.searchfield.model.Fruit
 import com.homalab.android.compose.sample.searchfield.model.dummyFruit
 import com.homalab.android.compose.sample.searchfield.search.MessageText
@@ -77,7 +78,8 @@ fun MainScreen(modifier: Modifier = Modifier, searchState: SearchState<Fruit>) {
                         )
                     )
                 )
-            )
+            ),
+            progressIndicator = { LottieCircularLoading() }
         )
 
         AnimatedContent(

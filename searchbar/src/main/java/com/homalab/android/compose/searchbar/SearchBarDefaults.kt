@@ -25,11 +25,7 @@ fun DefaultBackIcon() {
 
 @Composable
 fun DefaultProgressIndicator() {
-    CircularProgressIndicator(
-        modifier = Modifier
-            .padding(horizontal = 8.dp)
-            .size(28.dp)
-    )
+    CircularProgressIndicator()
 }
 
 @Composable

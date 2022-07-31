@@ -135,7 +135,14 @@ private fun SearchTextField(
 
                 when {
                     searching -> {
-                        progressIndicator()
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .aspectRatio(1f, true)
+                                .padding(dimensionValues.iconPadding),
+                        ) {
+                            progressIndicator()
+                        }
                     }
                     query.text.isNotEmpty() -> {
                         IconButton(onClick = onClearQuery) {
