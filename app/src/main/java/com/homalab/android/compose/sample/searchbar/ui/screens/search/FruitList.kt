@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchbar.search
+package com.homalab.android.compose.sample.searchbar.ui.screens.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

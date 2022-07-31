@@ -15,8 +15,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.homalab.android.compose.sample.searchbar.components.LottieCircularLoading
 import com.homalab.android.compose.sample.searchbar.model.Fruit
 import com.homalab.android.compose.sample.searchbar.model.dummyFruit
-import com.homalab.android.compose.sample.searchbar.search.MessageText
-import com.homalab.android.compose.sample.searchbar.search.SearchDisplay
+import com.homalab.android.compose.sample.searchbar.ui.screens.search.MessageText
+import com.homalab.android.compose.sample.searchbar.ui.screens.search.SearchDisplay
 import com.homalab.android.compose.searchbar.SearchBar
 import com.homalab.android.compose.searchbar.SearchBarDefaults
 import com.homalab.android.compose.searchbar.SearchState
