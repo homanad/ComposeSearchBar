@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "SampleSearchField"
+rootProject.name = "SampleSearchBar"
 include ':app'
 include ':searchbar'

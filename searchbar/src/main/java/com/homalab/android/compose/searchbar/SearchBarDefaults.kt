@@ -28,7 +28,7 @@ fun DefaultProgressIndicator() {
     CircularProgressIndicator(
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .size(36.dp)
+            .size(28.dp)
     )
 }
 
