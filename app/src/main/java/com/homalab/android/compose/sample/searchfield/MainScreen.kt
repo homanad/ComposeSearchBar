@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -36,6 +37,9 @@ fun MainScreen(modifier: Modifier = Modifier, searchState: SearchState<String>) 
                         .padding(horizontal = 8.dp)
                         .size(36.dp)
                 )
+            },
+            cancelIcon = {
+                Icon(imageVector = Icons.Filled.Close, contentDescription = null)
             }
         )
     }

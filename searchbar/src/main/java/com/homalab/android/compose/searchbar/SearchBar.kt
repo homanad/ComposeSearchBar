@@ -4,8 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -32,7 +30,8 @@ fun SearchBar(
     focused: Boolean,
     modifier: Modifier = Modifier,
     backIcon: @Composable () -> Unit,
-    progressIndicator: @Composable () -> Unit
+    progressIndicator: @Composable () -> Unit,
+    cancelIcon: @Composable () -> Unit
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -62,7 +61,8 @@ fun SearchBar(
             searching,
             focused,
             modifier.weight(1f),
-            progressIndicator
+            progressIndicator,
+            cancelIcon
         )
     }
 }
@@ -76,7 +76,8 @@ private fun SearchTextField(
     searching: Boolean,
     focused: Boolean,
     modifier: Modifier = Modifier,
-    progressIndicator: @Composable () -> Unit
+    progressIndicator: @Composable () -> Unit,
+    cancelIcon: @Composable () -> Unit
 ) {
 
     val focusRequester = remember { FocusRequester() }
@@ -136,7 +137,7 @@ private fun SearchTextField(
                         }
                         query.text.isNotEmpty() -> {
                             IconButton(onClick = onClearQuery) {
-                                Icon(imageVector = Icons.Filled.Close, contentDescription = null)
+                                cancelIcon()
                             }
                         }
                     }
