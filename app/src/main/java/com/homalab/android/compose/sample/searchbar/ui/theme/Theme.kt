@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield.ui.theme
+package com.homalab.android.compose.sample.searchbar.ui.theme
 
 import android.app.Activity
 import android.os.Build

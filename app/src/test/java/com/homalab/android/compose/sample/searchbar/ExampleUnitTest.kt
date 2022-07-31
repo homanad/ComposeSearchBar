@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield
+package com.homalab.android.compose.sample.searchbar
 
 import org.junit.Test
 

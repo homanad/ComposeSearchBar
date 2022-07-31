@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield
+package com.homalab.android.compose.sample.searchbar
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,9 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.ExperimentalTextApi
-import com.homalab.android.compose.sample.searchfield.model.Fruit
-import com.homalab.android.compose.sample.searchfield.model.dummyFruit
-import com.homalab.android.compose.sample.searchfield.ui.theme.SampleSearchFieldTheme
+import com.homalab.android.compose.sample.searchbar.model.Fruit
+import com.homalab.android.compose.sample.searchbar.ui.theme.SampleSearchFieldTheme
 import com.homalab.android.compose.searchbar.rememberSearchState
 
 @ExperimentalTextApi

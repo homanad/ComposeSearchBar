@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield.search
+package com.homalab.android.compose.sample.searchbar.search
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.homalab.android.compose.sample.searchfield.components.LottieAirplaneLoading
-import com.homalab.android.compose.sample.searchfield.model.Fruit
-import com.homalab.android.compose.sample.searchfield.model.dummyFruit
+import com.homalab.android.compose.sample.searchbar.components.LottieAirplaneLoading
+import com.homalab.android.compose.sample.searchbar.model.Fruit
+import com.homalab.android.compose.sample.searchbar.model.dummyFruit
 import com.homalab.android.compose.searchbar.SearchDisplayType
 import com.homalab.android.compose.searchbar.SearchState
 

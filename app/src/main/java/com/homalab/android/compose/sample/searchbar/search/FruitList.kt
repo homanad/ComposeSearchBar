@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield.search
+package com.homalab.android.compose.sample.searchbar.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.homalab.android.compose.sample.searchfield.model.Fruit
+import com.homalab.android.compose.sample.searchbar.model.Fruit
 
 @Composable
 fun FruitList(

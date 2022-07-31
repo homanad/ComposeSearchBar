@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield
+package com.homalab.android.compose.sample.searchbar
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
@@ -12,11 +12,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import com.homalab.android.compose.sample.searchfield.components.LottieCircularLoading
-import com.homalab.android.compose.sample.searchfield.model.Fruit
-import com.homalab.android.compose.sample.searchfield.model.dummyFruit
-import com.homalab.android.compose.sample.searchfield.search.MessageText
-import com.homalab.android.compose.sample.searchfield.search.SearchDisplay
+import com.homalab.android.compose.sample.searchbar.components.LottieCircularLoading
+import com.homalab.android.compose.sample.searchbar.model.Fruit
+import com.homalab.android.compose.sample.searchbar.model.dummyFruit
+import com.homalab.android.compose.sample.searchbar.search.MessageText
+import com.homalab.android.compose.sample.searchbar.search.SearchDisplay
 import com.homalab.android.compose.searchbar.SearchBar
 import com.homalab.android.compose.searchbar.SearchBarDefaults
 import com.homalab.android.compose.searchbar.SearchState

@@ -1,4 +1,4 @@
-package com.homalab.android.compose.sample.searchfield.model
+package com.homalab.android.compose.sample.searchbar.model
 
 data class Fruit(
     val id: Int,
