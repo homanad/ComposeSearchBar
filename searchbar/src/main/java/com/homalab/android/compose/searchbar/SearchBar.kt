@@ -2,22 +2,19 @@ package com.homalab.android.compose.searchbar
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.*
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun SearchBar(
@@ -29,9 +26,12 @@ fun SearchBar(
     searching: Boolean,
     focused: Boolean,
     modifier: Modifier = Modifier,
-    backIcon: @Composable () -> Unit,
-    progressIndicator: @Composable () -> Unit,
-    cancelIcon: @Composable () -> Unit
+    backIcon: @Composable () -> Unit = { DefaultBackIcon() },
+    progressIndicator: @Composable () -> Unit = { DefaultProgressIndicator() },
+    cancelIcon: @Composable () -> Unit = { DefaultCancelIcon() },
+    textConfigs: SearchBarDefaults.TextConfigs = SearchBarDefaults.defaultTextConfigs(),
+    searchBarConfigs: SearchBarDefaults.SearchBarConfigs = SearchBarDefaults.defaultSearchBarConfigs(),
+    dimensionValues: SearchBarDefaults.DimensionValues = SearchBarDefaults.defaultDimensionValues()
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -44,7 +44,7 @@ fun SearchBar(
 
         AnimatedVisibility(visible = focused) {
             IconButton(
-                modifier = Modifier.padding(start = 4.dp),
+                modifier = Modifier.padding(start = dimensionValues.iconPadding),
                 onClick = {
                     onBack()
                 }
@@ -59,10 +59,11 @@ fun SearchBar(
             onSearchFocusChange,
             onClearQuery,
             searching,
-            focused,
-            modifier.weight(1f),
             progressIndicator,
-            cancelIcon
+            cancelIcon,
+            textConfigs,
+            searchBarConfigs,
+            dimensionValues
         )
     }
 }
@@ -74,92 +75,75 @@ private fun SearchTextField(
     onSearchFocusChange: (Boolean) -> Unit,
     onClearQuery: () -> Unit,
     searching: Boolean,
-    focused: Boolean,
-    modifier: Modifier = Modifier,
     progressIndicator: @Composable () -> Unit,
-    cancelIcon: @Composable () -> Unit
+    cancelIcon: @Composable () -> Unit,
+    textConfigs: SearchBarDefaults.TextConfigs = SearchBarDefaults.defaultTextConfigs(),
+    searchBarConfigs: SearchBarDefaults.SearchBarConfigs,
+    dimensionValues: SearchBarDefaults.DimensionValues
 ) {
 
     val focusRequester = remember { FocusRequester() }
 
     Surface(
-        modifier = modifier
-            .then(
-                Modifier
-                    .height(48.dp)
-                    .padding(
-                        top = 8.dp,
-                        bottom = 8.dp,
-                        start = if (!focused) 16.dp else 0.dp,
-                        end = 8.dp
-                    )
-            ),
-        color = Color(0xffF5F5F5),
-        shape = RoundedCornerShape(percent = 50),
+        modifier = Modifier
+            .height(dimensionValues.searchBarHeight)
+            .padding(dimensionValues.contentPadding),
+        color = searchBarConfigs.backgroundColor,
+        shape = searchBarConfigs.shape,
     ) {
+        Box(
+            contentAlignment = Alignment.CenterStart,
+        ) {
 
-        CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.primaryContainer) {
-            Box(
-                contentAlignment = Alignment.CenterStart,
-                modifier = modifier
-            ) {
-
-                if (query.text.isEmpty()) {
-                    SearchHint(modifier.padding(start = 24.dp, end = 8.dp))
-                }
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    BasicTextField(
-                        value = query,
-                        onValueChange = onQueryChange,
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .onFocusChanged {
-                                onSearchFocusChange(it.isFocused)
-                            }
-                            .focusRequester(focusRequester)
-                            .padding(
-                                top = 8.dp,
-                                bottom = 8.dp,
-                                start = 24.dp,
-                                end = 8.dp
-                            )
-                            .semantics {
-
-                            },
-                        singleLine = true
+            if (query.text.isEmpty()) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(
+                            start = dimensionValues.startTextPadding,
+                            end = dimensionValues.contentPadding
+                        )
+                ) {
+                    Text(
+                        text = textConfigs.hintText,
+                        style = textConfigs.hintTextStyle
                     )
+                }
+            }
 
-                    when {
-                        searching -> {
-                            progressIndicator()
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                BasicTextField(
+                    value = query,
+                    onValueChange = onQueryChange,
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .onFocusChanged {
+                            onSearchFocusChange(it.isFocused)
                         }
-                        query.text.isNotEmpty() -> {
-                            IconButton(onClick = onClearQuery) {
-                                cancelIcon()
-                            }
+                        .focusRequester(focusRequester)
+                        .padding(
+                            top = dimensionValues.contentPadding,
+                            bottom = dimensionValues.contentPadding,
+                            start = dimensionValues.startTextPadding,
+                            end = dimensionValues.contentPadding
+                        ),
+                    singleLine = true,
+                    textStyle = textConfigs.searchTextStyle
+                )
+
+                when {
+                    searching -> {
+                        progressIndicator()
+                    }
+                    query.text.isNotEmpty() -> {
+                        IconButton(onClick = onClearQuery) {
+                            cancelIcon()
                         }
                     }
                 }
             }
         }
-
-    }
-}
-
-@Composable
-private fun SearchHint(modifier: Modifier = Modifier) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxSize()
-            .then(modifier)
-
-    ) {
-        Text(
-            color = Color(0xff757575),
-            text = "Type to search",
-        )
     }
 }
