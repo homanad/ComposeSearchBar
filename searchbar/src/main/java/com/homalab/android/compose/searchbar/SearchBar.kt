@@ -31,7 +31,8 @@ fun SearchBar(
     searching: Boolean,
     focused: Boolean,
     modifier: Modifier = Modifier,
-    backIcon: @Composable () -> Unit
+    backIcon: @Composable () -> Unit,
+    progressIndicator: @Composable () -> Unit
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -60,20 +61,22 @@ fun SearchBar(
             onClearQuery,
             searching,
             focused,
-            modifier.weight(1f)
+            modifier.weight(1f),
+            progressIndicator
         )
     }
 }
 
 @Composable
-fun SearchTextField(
+private fun SearchTextField(
     query: TextFieldValue,
     onQueryChange: (TextFieldValue) -> Unit,
     onSearchFocusChange: (Boolean) -> Unit,
     onClearQuery: () -> Unit,
     searching: Boolean,
     focused: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    progressIndicator: @Composable () -> Unit
 ) {
 
     val focusRequester = remember { FocusRequester() }
@@ -129,11 +132,7 @@ fun SearchTextField(
 
                     when {
                         searching -> {
-                            CircularProgressIndicator(
-                                modifier = Modifier
-                                    .padding(horizontal = 8.dp)
-                                    .size(36.dp)
-                            )
+                            progressIndicator()
                         }
                         query.text.isNotEmpty() -> {
                             IconButton(onClick = onClearQuery) {
