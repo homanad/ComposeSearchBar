@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.ExperimentalTextApi
 import com.homalab.android.compose.sample.searchfield.model.Fruit
 import com.homalab.android.compose.sample.searchfield.model.dummyFruit
 import com.homalab.android.compose.sample.searchfield.ui.theme.SampleSearchFieldTheme
 import com.homalab.android.compose.searchbar.rememberSearchState
 
+@ExperimentalTextApi
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

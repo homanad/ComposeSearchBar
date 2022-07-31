@@ -7,15 +7,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import com.homalab.android.compose.sample.searchfield.model.Fruit
 import com.homalab.android.compose.sample.searchfield.model.dummyFruit
 import com.homalab.android.compose.sample.searchfield.search.MessageText
 import com.homalab.android.compose.sample.searchfield.search.SearchDisplay
 import com.homalab.android.compose.searchbar.SearchBar
+import com.homalab.android.compose.searchbar.SearchBarDefaults
 import com.homalab.android.compose.searchbar.SearchState
 import kotlinx.coroutines.delay
 
+@ExperimentalTextApi
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, searchState: SearchState<Fruit>) {
@@ -51,7 +57,27 @@ fun MainScreen(modifier: Modifier = Modifier, searchState: SearchState<Fruit>) {
             },
             onBack = { searchState.focused = false },
             searching = searchState.searching,
-            focused = searchState.focused
+            focused = searchState.focused,
+            //CUSTOMIZATION
+            textConfigs = SearchBarDefaults.defaultTextConfigs().copy(
+                hintText = "Type here...",
+                searchTextStyle = TextStyle(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            Color(0xFF915AF1),
+                            Color(0xFFE8C55A)
+                        )
+                    )
+                ),
+                hintTextStyle = TextStyle(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFF00BCD4),
+                            Color(0xFFE8C55A)
+                        )
+                    )
+                )
+            )
         )
 
         AnimatedContent(
