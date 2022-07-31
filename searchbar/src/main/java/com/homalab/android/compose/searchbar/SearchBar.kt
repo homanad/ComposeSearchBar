@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -31,7 +30,8 @@ fun SearchBar(
     onBack: () -> Unit,
     searching: Boolean,
     focused: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    backIcon: @Composable () -> Unit
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -49,7 +49,7 @@ fun SearchBar(
                     onBack()
                 }
             ) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+                backIcon()
             }
         }
 
